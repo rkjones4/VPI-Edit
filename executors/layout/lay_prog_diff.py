@@ -1507,8 +1507,6 @@ def make_NF_edit(ex, NL, edit_op, INDEX, ret_early=False):
         assert edit_fn not in edit_node.OI
         if edit_prms[0] in TS_TOKENS:
 
-            if len(edit_node.OI) > 1:
-                print(edit_node.OI)
             assert len(edit_node.OI) == 1
             assert edit_node.OI['TSI'][0] == 'dummy'
 

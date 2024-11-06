@@ -363,7 +363,7 @@ def pretrain(domain):
     assert cache_path is not None
     if cache_path.split('/')[-1] not in os.listdir('/'.join(cache_path.split('/')[:-1])):
     
-        print(f"Saving cache at {cache_path}")
+        utils.log_print(f"Cache does not exist. Saving cache at {cache_path}", args)
         with torch.no_grad():
             train_prog_pairs = make_prog_pairs(domain, 'train', args.train_size)
             val_prog_pairs = make_prog_pairs(domain, 'val', args.eval_size)
@@ -372,7 +372,10 @@ def pretrain(domain):
             'train_prog_pairs': train_prog_pairs,
             'val_prog_pairs': val_prog_pairs
         }, cache_path)        
-                                           
+
+        utils.log_print(f"Cache saved at {cache_path}. Please re-run script to begin edit network pretraining", args)
+        return
+        
     train_loader, val_loader = get_synth_datasets(
         domain,
     )
